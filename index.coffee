@@ -58,7 +58,6 @@ status = (options = { }) ->
                     file.filename == streamFile.relative
 
                 if i > -1
-                    console.log 'HERE', streamFile.path, files[i].status
                     streamFile.status = files[i].status
                 else
                     # File did not show up in git status,
