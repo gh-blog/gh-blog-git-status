@@ -53,7 +53,7 @@ status = (options = { }) ->
         throw new Error 'You must specifiy a working directory'
 
     processFile = (streamFile, enc, done) ->
-        promise.then (files) =>
+        promise.then (files) ->
             if not streamFile.isDirectory()
                 i = _.findIndex files, (file) ->
                     file.filename == streamFile.relative
@@ -68,7 +68,7 @@ status = (options = { }) ->
             done null, streamFile
             files
 
-    cmd='git status --porcelain --untracked-files="all"'
+    cmd = 'git status --porcelain --untracked-files="all"'
     repo = path.resolve cwd, repo
     promise =
         git cmd, cwd: repo
