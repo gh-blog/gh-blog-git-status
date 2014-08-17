@@ -41,7 +41,6 @@ objectsToFiles = (cwd) ->
     (objects) ->
         objects.map (obj) ->
             file = new File path: obj.filename, cwd: cwd
-            console.log file.path
             file.status = obj.status
             file
 
@@ -52,21 +51,14 @@ status = (options = { }) ->
     if not repo
         throw new Error 'You must specifiy a working directory'
 
-    cmd = 'git status --porcelain --untracked-files="all"'
-    repo = path.resolve cwd, repo
-    status = ->
-        git cmd, cwd: repo
-        .then strToArray
-        .then arrayToObjects cmd
-
     processFile = (streamFile, enc, done) ->
-        (promise || promise = status())
-        .then (files) ->
+        try
             if not streamFile.isDirectory()
                 i = _.findIndex files, (file) ->
                     file.filename == streamFile.relative
 
                 if i > -1
+                    console.log 'HERE', streamFile.path, files[i].status
                     streamFile.status = files[i].status
                 else
                     # File did not show up in git status,
@@ -75,7 +67,23 @@ status = (options = { }) ->
 
             done null, streamFile
             files
+        catch e
+            # @TODO: debug
+            console.log 'ERROR in git-status', e
 
-    through2.obj processFile
+    files = undefined
+    resolved = no
+    through2.obj (args...) ->
+        processFile.bind this
+        if resolved then return processFile args...
+        cmd = 'git status --porcelain --untracked-files="all"'
+        repo = path.resolve cwd, repo
+        git cmd, cwd: repo
+        .then strToArray
+        .then arrayToObjects cmd
+        .then (f) ->
+            resolved = yes
+            files = f
+            processFile args...
 
 module.exports = { status }
