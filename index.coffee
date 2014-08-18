@@ -69,6 +69,7 @@ status = (options = { }) ->
         catch e
             # @TODO: debug
             console.log 'ERROR in git-status', e
+            done e, file
 
     files = undefined
     resolved = no
