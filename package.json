@@ -1,22 +1,22 @@
 {
-  "name": "pipelog-git-status",
+  "name": "gh-blog-git-status",
   "version": "0.0.0",
-  "description": "Pipelog plugin, attaches git status info for each post to its corresponding stream object.",
+  "description": "gh-blog plugin, attaches git status info for each post to its corresponding stream object.",
   "main": "index.js",
   "scripts": {
     "test": "node test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/forabi/pipelog-git-status.git"
+    "url": "https://github.com/gh-blog/gh-blog-git-status.git"
   },
   "keywords": [
-    "pipelog-plugin"
+    "gh-blog-plugin"
   ],
   "author": "Muhammad Fawwaz Orabi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/forabi/pipelog-git-status/issues"
+    "url": "https://github.com/gh-blog/gh-blog-git-status/issues"
   },
-  "homepage": "https://github.com/forabi/pipelog-git-status"
+  "homepage": "https://github.com/gh-blog/gh-blog-git-status"
 }
