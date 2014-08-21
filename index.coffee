@@ -1,4 +1,3 @@
-_   = require 'lodash'
 git = require 'git-promise'
 through2 = require 'through2'
 path = require 'path'
