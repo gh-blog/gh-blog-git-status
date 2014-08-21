@@ -1,10 +1,12 @@
 _   = require 'lodash'
 git = require 'git-promise'
-# @TODO: replace with Vinyl
-{ File }   = require 'gulp-util'
 through2 = require 'through2'
 path = require 'path'
-
+_ = {
+    isArray: require 'lodash.isarray'
+    defaults: require 'lodash.defaults'
+    findIndex: require 'lodash.findindex'
+}
 
 states =
     ' ' : 'unmodified'
