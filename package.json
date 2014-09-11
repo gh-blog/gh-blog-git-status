@@ -25,5 +25,8 @@
     "lodash.findindex": "^2.4.1",
     "lodash.isarray": "^2.4.1",
     "through2": "^0.6.1"
+  },
+  "gh-blog": {
+    "provides": ["status"]
   }
 }
