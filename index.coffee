@@ -45,7 +45,7 @@ objectsToFiles = (cwd) ->
             file.status = obj.status
             file
 
-status = (options = { }) ->
+status = module.exports = (options = { }) ->
     options = _.defaults options, cwd: process.cwd()
     { cwd, repo } = options
 
@@ -86,5 +86,3 @@ status = (options = { }) ->
             resolved = yes
             files = f
             processFile args...
-
-module.exports = { status }
